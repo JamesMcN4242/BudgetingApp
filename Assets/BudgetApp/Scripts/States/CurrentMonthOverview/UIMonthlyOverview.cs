@@ -1,10 +1,10 @@
 ﻿////////////////////////////////////////////////////////////
-/////   UICurrentMonthOverview.cs
+/////   UIMonthlyOverview.cs
 /////   James McNeil - 2020
 ////////////////////////////////////////////////////////////
 
 using PersonalFramework;
 
-public class UICurrentMonthOverview : UIStateBase
+public class UIMonthlyOverview : UIStateBase
 {
 }

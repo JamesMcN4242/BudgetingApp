@@ -104,7 +104,7 @@ namespace PersonalFramework
 
                 BuildPlayerOptions buildPlayerOptions = GetBuildPlayerOptions(target, savePath, autoRunAfterBuild);
                 var report = BuildPipeline.BuildPlayer(buildPlayerOptions);
-                Debug.Log("Build Report: " + report);
+                Debug.Log("Build Result: " + report.summary.result);
             }
             else
             {

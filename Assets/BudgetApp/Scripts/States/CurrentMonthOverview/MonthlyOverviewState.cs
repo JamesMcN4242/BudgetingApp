@@ -1,12 +1,12 @@
 ﻿////////////////////////////////////////////////////////////
-/////   CurrentMonthOverviewState.cs
+/////   MonthlyOverviewState.cs
 /////   James McNeil - 2020
 ////////////////////////////////////////////////////////////
 
 using PersonalFramework;
 using UnityEngine;
 
-public class CurrentMonthOverviewState : FlowStateBase
+public class MonthlyOverviewState : FlowStateBase
 {
     private const string k_backMessage = "back";
 
@@ -22,7 +22,7 @@ public class CurrentMonthOverviewState : FlowStateBase
 
     protected override bool AquireUIFromScene()
     {
-        m_ui = Object.FindObjectOfType<UICurrentMonthOverview>();
+        m_ui = Object.FindObjectOfType<UIMonthlyOverview>();
         return m_ui != null;
     }
 }
