@@ -4,15 +4,20 @@
 ////////////////////////////////////////////////////////////
 
 using PersonalFramework;
+using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+using static FlowMessageDefs;
+
 public class UIIncomeExpenses : UIStateBase
 {
-    private readonly Color k_expenseColor = Color.red;
-    private readonly Color k_incomeColor = Color.green;
+    private static readonly Color k_expenseColor = Color.red;
+    private static readonly Color k_incomeColor = Color.green;
+    private static readonly Color k_selectedColor = Color.yellow;
+
     private const int k_elementsInRow = 3;
     private const int k_elementsInColumn = 7;
     private const float k_rowSpacing = 0.03f;
@@ -22,16 +27,23 @@ public class UIIncomeExpenses : UIStateBase
     private const int k_elementsPerGrid = k_elementsInColumn * k_elementsInRow;
 
     private Transform m_gridTransform = null;
+    private TextMeshProUGUI m_titleText = null;
+    private Button m_editButton = null;
+    private Button m_removeButton = null;
 
     void Start()
     {
         m_gridTransform = gameObject.FindChildByName("Grid").transform;
+        m_titleText = gameObject.GetComponentFromChild<TextMeshProUGUI>("Title");
+        m_editButton = gameObject.GetComponentFromChild<Button>("Edit");
+        m_removeButton = gameObject.GetComponentFromChild<Button>("Remove");
     }
 
-    public void BuildGridElements(GridElementData[] gridElements)
+    public void BuildGridElements(List<GridElementData> gridElements)
     {
+        //TODO: Page the grid on overflowing values
         m_gridTransform.DestroyAllChildren();
-        if (gridElements == null || gridElements.Length == 0) return;
+        if (gridElements == null || gridElements.Count == 0) return;
 
         GameObject gridPrefab = Resources.Load<GameObject>("UIGridElement");
         float yMaxAnchor = 1.0f;
@@ -41,12 +53,13 @@ public class UIIncomeExpenses : UIStateBase
             for (int columnIndex = 0; columnIndex < k_elementsInRow; columnIndex++)
             {
                 RectTransform element = Object.Instantiate(gridPrefab, m_gridTransform).GetComponent<RectTransform>();
+                element.name = $"Element_{gridIndex}";
 
                 Image image = element.GetComponent<Image>();
                 image.color = gridElements[gridIndex].IsExpense ? k_expenseColor : k_incomeColor;
 
                 UIButtonInteraction buttonInteraction = element.GetComponent<UIButtonInteraction>();
-                buttonInteraction.m_message = $"element_{gridIndex}";
+                buttonInteraction.m_message = k_selectElementMsg + gridIndex;
 
                 TextMeshProUGUI text = element.gameObject.GetComponentFromChild<TextMeshProUGUI>("Text");
                 text.text = $"{gridElements[gridIndex].m_variableName}:\n{gridElements[gridIndex].m_variableValue.ToString("C", CultureInfo.CurrentCulture)}";
@@ -56,12 +69,35 @@ public class UIIncomeExpenses : UIStateBase
 
                 xMinAnchor += k_rowElementSize + k_rowSpacing;
                 gridIndex++;
-                if(gridIndex >= gridElements.Length)
+                if(gridIndex >= gridElements.Count)
                 {
                     return;
                 }
             }
             yMaxAnchor -= k_columnElementSize + k_columnSpacing;
+        }
+    }
+
+    public void SetTitle(string titleText)
+    {
+        m_titleText.text = titleText;
+    }
+
+    public void SetEditRemoveInteractablity(bool interactable)
+    {
+        m_editButton.interactable = interactable;
+        m_removeButton.interactable = interactable;
+    }
+
+    public void SetButtonSelected(int indexToSelect, int previousIndex = -1, bool previousIsExpense = false)
+    {
+        Image toSelectImage = gameObject.GetComponentFromChild<Image>($"Element_{indexToSelect}");
+        toSelectImage.color = k_selectedColor;
+
+        if(previousIndex > -1)
+        {
+            Image toUnselectImage = gameObject.GetComponentFromChild<Image>($"Element_{previousIndex}");
+            toUnselectImage.color = previousIsExpense ? k_expenseColor : k_incomeColor;
         }
     }
 }

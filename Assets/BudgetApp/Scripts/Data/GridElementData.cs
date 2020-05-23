@@ -3,6 +3,8 @@
 /////   James McNeil - 2020
 ////////////////////////////////////////////////////////////
 
+using System.Collections.Generic;
+
 [System.Serializable]
 public struct GridElementData
 {
@@ -14,5 +16,5 @@ public struct GridElementData
 [System.Serializable]
 public struct GridElements
 {
-    public GridElementData[] m_elements;
+    public List<GridElementData> m_elements;
 }

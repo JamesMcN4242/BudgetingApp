@@ -19,22 +19,17 @@ public class BaseMenuState : FlowStateBase
     {
         switch (message)
         {
-            case string msg:
-            {
-                if(msg == k_toMonthOverview)
-                {
-                    ControllingStateStack.PushState(new MonthlyOverviewState());
-                }
-                else if (msg == k_setFixedValues)
-                {
-                    ControllingStateStack.PushState(new IncomeExpensesState(k_fixedValuesKey));
-                }
-                else if (msg == k_addVariableValue)
-                {
-                    ControllingStateStack.PushState(new IncomeExpensesState(k_variableValuesKey));
-                }
+            case k_toMonthOverview:
+                ControllingStateStack.PushState(new MonthlyOverviewState());
                 break;
-            }
+                
+            case k_setFixedValues:
+                ControllingStateStack.PushState(new IncomeExpensesState(k_fixedValuesKey, false));
+                break;
+                
+            case k_addVariableValue:
+                ControllingStateStack.PushState(new IncomeExpensesState(k_variableValuesKey, true));                
+                break;
         }
     }
 

@@ -6,15 +6,15 @@
 using PersonalFramework;
 using UnityEngine;
 
+using static FlowMessageDefs;
+
 public class MonthlyOverviewState : FlowStateBase
 {
-    private const string k_backMessage = "back";
-
     protected override void HandleMessage(object message)
     {
         switch (message)
         {
-            case string msg when msg == k_backMessage:
+            case k_backMenuMsg:
                 ControllingStateStack.PopState(this);
                 break;
         }

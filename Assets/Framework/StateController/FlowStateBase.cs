@@ -75,11 +75,7 @@ namespace PersonalFramework
             if (AquireUIFromScene())
             {
                 m_ui.SetContentActiveStatus(true);
-                WatchedObject[] objs = m_ui.gameObject.GetComponentsInChildren<WatchedObject>(true);
-                for(int i = 0; i < objs.Length; i++)
-                {
-                    objs[i].AddObserver(m_messageObserver);
-                }
+                RebuildObserverList();
             }
 
             StartPresentingState();
@@ -165,6 +161,18 @@ namespace PersonalFramework
         public bool IsDismissed()
         {
             return m_status == Status.DISMISSED;
+        }
+
+        protected void RebuildObserverList()
+        {
+            if (m_ui != null)
+            {
+                WatchedObject[] objs = m_ui.gameObject.GetComponentsInChildren<WatchedObject>(true);
+                for (int i = 0; i < objs.Length; i++)
+                {
+                    objs[i].AddObserver(m_messageObserver);
+                }
+            }
         }
     }
 }
