@@ -10,6 +10,9 @@ using UnityEngine;
 
 public class AddOrEditElementState : FlowStateBase
 {
+    private const string k_cancelMsg = "cancel";
+    private const string k_saveMsg = "save";
+
     private UIAddOrEditElement m_uiAddition = null;
     private Action<GridElementData> m_saveAction = null;
     private GridElementData? m_elementData;
@@ -38,13 +41,15 @@ public class AddOrEditElementState : FlowStateBase
     {
         switch (message)
         {
-            case "cancel":
+            case k_cancelMsg:
                 ControllingStateStack.PopState(this);
                 break;
 
-            case "save":
+            case k_saveMsg:
                 var enteredData = m_uiAddition.GetInputFieldContent();
-                if (float.TryParse(enteredData.value, NumberStyles.Float | NumberStyles.AllowThousands,
+
+                //TODO: Fix for commas - being seen as thousands indicator
+                if (float.TryParse(enteredData.value, NumberStyles.Float,
                               CultureInfo.InvariantCulture, out float value))
                 {
                     m_elementData = new GridElementData { m_variableName = enteredData.name, m_variableValue = value };

@@ -11,6 +11,11 @@ using static FlowMessageDefs;
 
 public class IncomeExpensesState : FlowStateBase
 {
+    private const string k_addMsg = "add";
+    private const string k_editMsg = "edit";
+    private const string k_removeMsg = "remove";
+    private const string k_breakdownMsg = "breakdown";
+
     private readonly string k_incomeExpensesKey;
 
     private UIIncomeExpenses m_uiIncomeExpenses = null;
@@ -40,11 +45,11 @@ public class IncomeExpensesState : FlowStateBase
     {
         switch (message)
         {
-            case "add":
+            case k_addMsg:
                 ControllingStateStack.PushState(new AddOrEditElementState(OnNewElementAdded));
                 break;
 
-            case "edit":
+            case k_editMsg:
                 ControllingStateStack.PushState(new AddOrEditElementState(OnElementEdited, m_gridElements.m_elements[m_selectedElementIndex]));
                 break;
 
@@ -52,9 +57,13 @@ public class IncomeExpensesState : FlowStateBase
                 ControllingStateStack.PopState(this);
                 break;
 
-            case "remove":
+            case k_removeMsg:
                 //TODO: Confirmation popup
                 RemoveSelectedElement();
+                break;
+
+            case k_breakdownMsg:
+                ControllingStateStack.PushState(new MonthlyOverviewState());
                 break;
 
             case string msg when msg.StartsWith(k_selectElementMsg):

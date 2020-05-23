@@ -6,14 +6,13 @@
 using PersonalFramework;
 using UnityEngine;
 
+using static PlayerPrefDefs;
+
 public class BaseMenuState : FlowStateBase
 {
     private const string k_toMonthOverview = "monthlyOverview";
     private const string k_setFixedValues = "setFixedValues";
     private const string k_addVariableValue = "addVariableValue";
-
-    private const string k_fixedValuesKey = "FixedValues";
-    private const string k_variableValuesKey = "VariableValues";
 
     protected override void HandleMessage(object message)
     {
