@@ -63,11 +63,11 @@ public class BaseMenuState : FlowStateBase
                 break;
                 
             case k_setFixedValues:
-                ControllingStateStack.PushState(new IncomeExpensesState(k_fixedValuesKey, false));
+                ControllingStateStack.PushState(new IncomeExpensesState(k_fixedValuesKey, false, m_localisationService));
                 break;
                 
             case k_addVariableValue:
-                ControllingStateStack.PushState(new IncomeExpensesState(k_variableValuesKey, true));                
+                ControllingStateStack.PushState(new IncomeExpensesState(k_variableValuesKey, true, m_localisationService));                
                 break;
 
             case k_monthlyGraphMsg:
@@ -75,7 +75,7 @@ public class BaseMenuState : FlowStateBase
                 break;
 
             case k_settingsMsg:
-                ControllingStateStack.PushState(new SettingsState());
+                ControllingStateStack.PushState(new SettingsState(m_localisationService, RefreshTextLanguage));
                 break;
         }
     }
@@ -84,5 +84,10 @@ public class BaseMenuState : FlowStateBase
     {
         m_ui = GameObject.FindObjectOfType<UIBaseMenu>();
         return m_ui != null;
+    }
+
+    private void RefreshTextLanguage()
+    {
+
     }
 }

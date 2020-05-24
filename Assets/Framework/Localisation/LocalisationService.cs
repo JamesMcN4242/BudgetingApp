@@ -66,6 +66,7 @@ namespace PersonalFramework
         public string GetLocalised(string key)
         {
             Assert(m_localisationDictionary != null, $"Trying to get localised string with key {key} before dictionary is created");
+            Assert(m_localisationDictionary.ContainsKey(key), $"Trying to get localised string with key {key} that doesn't exist");
             return m_localisationDictionary[key];
         }
 

@@ -17,16 +17,18 @@ public class IncomeExpensesState : FlowStateBase
     private const string k_breakdownMsg = "breakdown";
 
     private readonly string k_incomeExpensesKey;
+    private readonly bool k_showingVariableValues;
 
     private UIIncomeExpenses m_uiIncomeExpenses = null;
+    private LocalisationService m_locService = null;
     private GridElements m_gridElements;
     private int m_selectedElementIndex;
-    private bool m_showingVariableValues;
-
-    public IncomeExpensesState(string incomeExpensesKey, bool showingVariableValues)
+    
+    public IncomeExpensesState(string incomeExpensesKey, bool showingVariableValues, LocalisationService locService)
     {
         k_incomeExpensesKey = incomeExpensesKey;
-        m_showingVariableValues = showingVariableValues;
+        k_showingVariableValues = showingVariableValues;
+        m_locService = locService;
 
         string elementJson = PlayerPrefs.GetString(k_incomeExpensesKey, string.Empty);
         if(!string.IsNullOrEmpty(elementJson))
@@ -37,7 +39,8 @@ public class IncomeExpensesState : FlowStateBase
 
     protected override void StartPresentingState()
     {
-        m_uiIncomeExpenses.SetTitle((m_showingVariableValues ? "Variable" : "Fixed") + " Values");
+        //TODO: Localise UI Text strings
+        m_uiIncomeExpenses.SetTitle((k_showingVariableValues ? "Variable" : "Fixed") + " Values");
         BuildGridElements();
     }
 
@@ -58,8 +61,14 @@ public class IncomeExpensesState : FlowStateBase
                 break;
 
             case k_removeMsg:
-                //TODO: Confirmation popup
-                RemoveSelectedElement();
+                var popupText = new ConfirmationPopupState.PopupText
+                {
+                    m_title = m_locService.GetLocalised("CONFIRMATION_TITLE"),
+                    m_description = m_locService.GetLocalised("DELETE_ENTRY_DESC"),
+                    m_accept = m_locService.GetLocalised("CONTINUE"),
+                    m_decline = m_locService.GetLocalised("CANCEL")
+                };
+                ControllingStateStack.PushState(new ConfirmationPopupState(popupText, RemoveSelectedElement));
                 break;
 
             case k_breakdownMsg:
