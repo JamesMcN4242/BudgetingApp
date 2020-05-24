@@ -35,6 +35,13 @@ namespace PersonalFramework
             COUNT
         }
 
+        private static readonly string[] k_countryCodes = new string[]
+        {
+            "en-GB", //English (United Kingdom)
+            "de-AT" //German (Austrian)
+        };
+
+
         private LocalisableCultures m_currentLocalised = LocalisableCultures.UNLOADED;
         private Dictionary<string, string> m_localisationDictionary = null;
 
@@ -61,6 +68,8 @@ namespace PersonalFramework
 #endif
                 m_localisationDictionary[localisationList.m_localisationItems[i].m_key] = localisationList.m_localisationItems[i].m_entry;
             }
+
+            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo(k_countryCodes[(int)cultureToLoad]);
         }
 
         public string GetLocalised(string key)

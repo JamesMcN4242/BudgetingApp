@@ -15,6 +15,8 @@ public class IncomeExpensesState : FlowStateBase
     private const string k_editMsg = "edit";
     private const string k_removeMsg = "remove";
     private const string k_breakdownMsg = "breakdown";
+    private const string k_nextPageMsg = "nextPage";
+    private const string k_previousPageMsg = "previousPage";
 
     private readonly string k_incomeExpensesKey;
     private readonly bool k_showingVariableValues;
@@ -23,6 +25,7 @@ public class IncomeExpensesState : FlowStateBase
     private LocalisationService m_locService = null;
     private GridElements m_gridElements;
     private int m_selectedElementIndex;
+    private int m_pageNumber;
     
     public IncomeExpensesState(string incomeExpensesKey, bool showingVariableValues, LocalisationService locService)
     {
@@ -35,6 +38,7 @@ public class IncomeExpensesState : FlowStateBase
         {
             m_gridElements = JsonUtility.FromJson<GridElements>(elementJson);
         }
+        m_pageNumber = 0;
     }
 
     protected override void StartPresentingState()
@@ -73,6 +77,16 @@ public class IncomeExpensesState : FlowStateBase
 
             case k_breakdownMsg:
                 ControllingStateStack.PushState(new MonthlyOverviewState());
+                break;
+
+            case k_nextPageMsg:
+                m_pageNumber++;
+                BuildGridElements();
+                break;
+                
+            case k_previousPageMsg:
+                m_pageNumber = Mathf.Max(m_pageNumber-1, 0);
+                BuildGridElements();
                 break;
 
             case string msg when msg.StartsWith(k_selectElementMsg):
@@ -133,17 +147,23 @@ public class IncomeExpensesState : FlowStateBase
         m_selectedElementIndex = -1;
         SaveToPlayerPrefs();
 
+        if (m_gridElements.m_elements.Count <= UIIncomeExpenses.k_elementsPerGrid * (m_pageNumber + 1))
+        {
+            m_pageNumber = Mathf.Max(m_pageNumber - 1, 0);
+        }
+
         //TODO: Delete singular element instead of rebuilding full grid
         BuildGridElements();
     }
 
     private void BuildGridElements()
     {
-        m_uiIncomeExpenses.BuildGridElements(m_gridElements.m_elements);
+        m_uiIncomeExpenses.BuildGridElements(m_gridElements.m_elements, m_pageNumber);
         RebuildObserverList();
 
         m_selectedElementIndex = -1;
         m_uiIncomeExpenses.SetEditRemoveInteractablity(false);
+        m_uiIncomeExpenses.SetPageNavigatorInteractability(m_pageNumber > 0, m_gridElements.m_elements.Count > (m_pageNumber+1) * UIIncomeExpenses.k_elementsPerGrid);
     }
 
     private void SaveToPlayerPrefs()

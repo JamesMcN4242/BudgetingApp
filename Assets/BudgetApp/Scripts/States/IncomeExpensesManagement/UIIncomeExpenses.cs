@@ -24,12 +24,14 @@ public class UIIncomeExpenses : UIStateBase
     private const float k_columnSpacing = 0.03f;
     private const float k_rowElementSize = (1.0f / k_elementsInRow) - k_columnSpacing;
     private const float k_columnElementSize = (1.0f / k_elementsInColumn) - k_rowSpacing;
-    private const int k_elementsPerGrid = k_elementsInColumn * k_elementsInRow;
+    public const int k_elementsPerGrid = k_elementsInColumn * k_elementsInRow;
 
     private Transform m_gridTransform = null;
     private TextMeshProUGUI m_titleText = null;
     private Button m_editButton = null;
     private Button m_removeButton = null;
+    private Button m_previousPage = null;
+    private Button m_nextPage = null;
 
     void Start()
     {
@@ -37,17 +39,18 @@ public class UIIncomeExpenses : UIStateBase
         m_titleText = gameObject.GetComponentFromChild<TextMeshProUGUI>("Title");
         m_editButton = gameObject.GetComponentFromChild<Button>("Edit");
         m_removeButton = gameObject.GetComponentFromChild<Button>("Remove");
+        m_previousPage = gameObject.GetComponentFromChild<Button>("PreviousPage");
+        m_nextPage = gameObject.GetComponentFromChild<Button>("NextPage");
     }
 
-    public void BuildGridElements(List<GridElementData> gridElements)
+    public void BuildGridElements(List<GridElementData> gridElements, int pageNumber)
     {
-        //TODO: Page the grid on overflowing values
         m_gridTransform.DestroyAllChildren();
         if (gridElements == null || gridElements.Count == 0) return;
 
         GameObject gridPrefab = Resources.Load<GameObject>("UIGridElement");
         float yMaxAnchor = 1.0f;
-        for (int rowIndex = 0, gridIndex = 0; rowIndex < k_elementsInColumn; rowIndex++)
+        for (int rowIndex = 0, gridIndex = pageNumber * k_elementsPerGrid; rowIndex < k_elementsInColumn; rowIndex++)
         {
             float xMinAnchor = 0.0f;
             for (int columnIndex = 0; columnIndex < k_elementsInRow; columnIndex++)
@@ -87,6 +90,12 @@ public class UIIncomeExpenses : UIStateBase
     {
         m_editButton.interactable = interactable;
         m_removeButton.interactable = interactable;
+    }
+
+    public void SetPageNavigatorInteractability(bool previousPageInteractable, bool nextPageInteractable)
+    {
+        m_previousPage.interactable = previousPageInteractable;
+        m_nextPage.interactable = nextPageInteractable;
     }
 
     public void SetButtonSelected(int indexToSelect, int previousIndex = -1, bool previousIsExpense = false)
