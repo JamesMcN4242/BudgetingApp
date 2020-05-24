@@ -39,7 +39,7 @@ public class UIMonthGraph : UIStateBase
         m_graphContent = gameObject.FindChildByName("GraphContent").transform;
     }
 
-    public void SetMonthData(MonthlyValueData[] monthlyValues)
+    public void SetMonthData(MonthlyValueData[] monthlyValues, float highestValue)
     {
         m_graphContent.DestroyAllChildren();
 
@@ -68,26 +68,30 @@ public class UIMonthGraph : UIStateBase
             if(m_showIncomeToggle.isOn)
             {
                 incomeBar.anchorMin = new Vector2(barOnStartPos, incomeBar.anchorMin.y);
-                //TODO: Change y max dependant on value
-                incomeBar.anchorMax = new Vector2(barOnStartPos + barSize, 1.0f);
+                incomeBar.anchorMax = new Vector2(barOnStartPos + barSize, monthlyValues[i].TotalIncome / highestValue);
                 barOnStartPos += barSize;
             }
             if (m_showExpensesToggle.isOn)
             {
                 expensesBar.anchorMin = new Vector2(barOnStartPos, incomeBar.anchorMin.y);
-                //TODO: Change y max dependant on value
-                expensesBar.anchorMax = new Vector2(barOnStartPos + barSize, 1.0f);
+                expensesBar.anchorMax = new Vector2(barOnStartPos + barSize, -1f * monthlyValues[i].TotalExpenses / highestValue);
                 barOnStartPos += barSize;
             }
             if (m_showRemainingToggle.isOn)
             {
                 leftOverBar.anchorMin = new Vector2(barOnStartPos, incomeBar.anchorMin.y);
-                //TODO: Change y max dependant on value
-                leftOverBar.anchorMax = new Vector2(barOnStartPos + barSize, 1.0f);
+                leftOverBar.anchorMax = new Vector2(barOnStartPos + barSize, Mathf.Abs(monthlyValues[i].MonthlyBalanceRemaining) / highestValue);
             }
 
             //TODO: Month Desc of the slots
         }
+    }
+
+    public void SetToggleValues(bool[] toggleStates)
+    {
+        m_showIncomeToggle.SetIsOnWithoutNotify(toggleStates[(int)MonthGraphState.ShowStates.INCOME]);
+        m_showExpensesToggle.SetIsOnWithoutNotify(toggleStates[(int)MonthGraphState.ShowStates.EXPENSES]);
+        m_showRemainingToggle.SetIsOnWithoutNotify(toggleStates[(int)MonthGraphState.ShowStates.REMAINING]);
     }
 
     private int GetBarsActive()
