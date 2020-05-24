@@ -98,7 +98,7 @@ public class UIMonthGraph : UIStateBase
             rectTrans.anchorMin = new Vector2(barOnStartPos, rectTrans.anchorMin.y);
             rectTrans.anchorMax = new Vector2(barOnStartPos + barSize, barValue / highestValue);
             TextMeshProUGUI valueText = rectTrans.gameObject.GetComponentFromChild<TextMeshProUGUI>("Value");
-            valueText.text = barValue.ToString("C", CultureInfo.CurrentCulture);
+            valueText.text = barValue.ToString("C0", CultureInfo.CurrentCulture);
             barOnStartPos += barSize;
         }
         return barOnStartPos;

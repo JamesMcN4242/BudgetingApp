@@ -14,10 +14,10 @@ public class MenuSceneDirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_stateController.PushState(new BaseMenuState());
-
         LocalisationService = new LocalisationService();
         LocalisationService.LoadLocalisation(LocalisationService.LocalisableCultures.ENGLISH, "Localisation/{0}_localisation");
+        
+        m_stateController.PushState(new BaseMenuState(LocalisationService));
     }
 
     // Update is called once per frame

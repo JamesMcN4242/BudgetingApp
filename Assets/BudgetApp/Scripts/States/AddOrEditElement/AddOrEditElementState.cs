@@ -8,11 +8,10 @@ using System;
 using System.Globalization;
 using UnityEngine;
 
+using static FlowMessageDefs;
+
 public class AddOrEditElementState : FlowStateBase
 {
-    private const string k_cancelMsg = "cancel";
-    private const string k_saveMsg = "save";
-
     private UIAddOrEditElement m_uiAddition = null;
     private Action<GridElementData> m_saveAction = null;
     private GridElementData? m_elementData;
@@ -41,7 +40,7 @@ public class AddOrEditElementState : FlowStateBase
     {
         switch (message)
         {
-            case k_cancelMsg:
+            case k_cancelMenuMsg:
                 ControllingStateStack.PopState(this);
                 break;
 

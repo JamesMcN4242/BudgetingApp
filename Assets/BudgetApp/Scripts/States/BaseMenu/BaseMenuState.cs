@@ -18,6 +18,14 @@ public class BaseMenuState : FlowStateBase
     private const string k_monthlyGraphMsg = "monthlyGraph";
     private const string k_settingsMsg = "settings";
 
+    private LocalisationService m_localisationService = null;
+
+    public BaseMenuState(LocalisationService locService)
+    {
+        //TODO: Localise values
+        m_localisationService = locService;
+    }
+
     protected override void StartPresentingState()
     {
         string monthTrackedPreviously = PlayerPrefs.GetString(k_monthTrackingKey, string.Empty);
@@ -40,6 +48,7 @@ public class BaseMenuState : FlowStateBase
             values.monthlyValues.Add(monthData);
             PlayerPrefs.SetString(k_monthCollectionKey, JsonUtility.ToJson(values));
             PlayerPrefs.SetString(k_monthTrackingKey, string.Format(k_monthTrackingFormat, DateTime.Now.Month, DateTime.Now.Year));
+            PlayerPrefs.DeleteKey(k_variableValuesKey);
             PlayerPrefs.Save();
             return;
         }
