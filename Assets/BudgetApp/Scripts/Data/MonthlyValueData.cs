@@ -10,7 +10,7 @@ using UnityEngine;
 [Serializable]
 public struct MonthlyValueData
 {
-    public DateTime m_monthReflected;
+    public string m_monthReflected;
     public float m_totalFixedIncome;
     public float m_totalFixedExpenses;
     public float m_totalVariableIncome;
@@ -37,10 +37,11 @@ public static class MonthDataUtils
 
         var fixedValues = TotalValues(gridElements[0].m_elements);
         var variableValues = TotalValues(gridElements[1].m_elements);
-
+        string monthReflected = string.Format(PlayerPrefDefs.k_monthTrackingFormat, DateTime.Now.Month, DateTime.Now.Year);
+  
         return new MonthlyValueData
         {
-            m_monthReflected = DateTime.Now,
+            m_monthReflected = monthReflected,
             m_totalFixedIncome = fixedValues.income,
             m_totalFixedExpenses = fixedValues.expenses,
             m_totalVariableIncome = variableValues.income,
