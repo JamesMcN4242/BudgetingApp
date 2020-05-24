@@ -75,7 +75,8 @@ public class BaseMenuState : FlowStateBase
                 break;
 
             case k_settingsMsg:
-                throw new NotImplementedException("No settings feature has yet been introduced");                
+                ControllingStateStack.PushState(new SettingsState());
+                break;
         }
     }
 

@@ -31,7 +31,8 @@ namespace PersonalFramework
         {
             UNLOADED = -1,
             ENGLISH = 0,
-            GERMAN
+            DEUTSCH,
+            COUNT
         }
 
         private LocalisableCultures m_currentLocalised = LocalisableCultures.UNLOADED;

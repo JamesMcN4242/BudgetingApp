@@ -5,6 +5,8 @@
 
 public static class PlayerPrefDefs
 {
+    public const string k_localisationIndexKey = "LocIndex";
+
     public const string k_monthTrackingKey = "MonthBeingTracked";
     public const string k_monthCollectionKey = "MonthsCollected";
     public const string k_monthTrackingFormat = "{0}_{1}";

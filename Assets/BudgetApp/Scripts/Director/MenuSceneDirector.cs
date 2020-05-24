@@ -6,6 +6,9 @@
 using PersonalFramework;
 using UnityEngine;
 
+using static PlayerPrefDefs;
+using static ResourceDefs;
+
 public class MenuSceneDirector : MonoBehaviour
 {
     public LocalisationService LocalisationService { get; private set; }
@@ -15,7 +18,8 @@ public class MenuSceneDirector : MonoBehaviour
     void Start()
     {
         LocalisationService = new LocalisationService();
-        LocalisationService.LoadLocalisation(LocalisationService.LocalisableCultures.ENGLISH, "Localisation/{0}_localisation");
+        int index = PlayerPrefs.GetInt(k_localisationIndexKey, 0);
+        LocalisationService.LoadLocalisation((LocalisationService.LocalisableCultures)index, k_languageResourceFormat);
         
         m_stateController.PushState(new BaseMenuState(LocalisationService));
     }
