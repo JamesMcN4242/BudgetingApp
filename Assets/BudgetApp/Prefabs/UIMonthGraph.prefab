@@ -167,7 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7047783425269692285}
   m_Layer: 5
-  m_Name: QuaterCont
+  m_Name: QuarterCont
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 7562473500812104358}
   - component: {fileID: 6637315623355248508}
   m_Layer: 5
-  m_Name: QuaterValue
+  m_Name: QuarterValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1974,6 +1974,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.6792453
       objectReference: {fileID: 0}
+    - target: {fileID: 8870829271909081531, guid: 7a0826e6426f66c4d90e281aeae11510,
+        type: 3}
+      propertyPath: m_message
+      value: showIncome_
+      objectReference: {fileID: 0}
     - target: {fileID: 7832569049948542972, guid: 7a0826e6426f66c4d90e281aeae11510,
         type: 3}
       propertyPath: m_text
@@ -2003,11 +2008,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.lineCount
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8870829271909081531, guid: 7a0826e6426f66c4d90e281aeae11510,
-        type: 3}
-      propertyPath: m_message
-      value: showIncome_
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a0826e6426f66c4d90e281aeae11510, type: 3}
@@ -2149,6 +2149,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.6792453
       objectReference: {fileID: 0}
+    - target: {fileID: 8870829271909081531, guid: 7a0826e6426f66c4d90e281aeae11510,
+        type: 3}
+      propertyPath: m_message
+      value: showRemaining_
+      objectReference: {fileID: 0}
     - target: {fileID: 7832569049948542972, guid: 7a0826e6426f66c4d90e281aeae11510,
         type: 3}
       propertyPath: m_text
@@ -2183,11 +2188,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8870829271909081531, guid: 7a0826e6426f66c4d90e281aeae11510,
-        type: 3}
-      propertyPath: m_message
-      value: showRemaining_
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a0826e6426f66c4d90e281aeae11510, type: 3}
@@ -2329,6 +2329,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.6792453
       objectReference: {fileID: 0}
+    - target: {fileID: 8870829271909081531, guid: 7a0826e6426f66c4d90e281aeae11510,
+        type: 3}
+      propertyPath: m_message
+      value: showExpenses_
+      objectReference: {fileID: 0}
     - target: {fileID: 7832569049948542972, guid: 7a0826e6426f66c4d90e281aeae11510,
         type: 3}
       propertyPath: m_text
@@ -2363,11 +2368,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8870829271909081531, guid: 7a0826e6426f66c4d90e281aeae11510,
-        type: 3}
-      propertyPath: m_message
-      value: showExpenses_
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a0826e6426f66c4d90e281aeae11510, type: 3}
