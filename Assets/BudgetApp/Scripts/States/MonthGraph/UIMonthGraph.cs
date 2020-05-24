@@ -14,6 +14,7 @@ using static System.Convert;
 public class UIMonthGraph : UIStateBase
 {
     private const float k_graphSlotSpacing = 0.03f;
+    private static readonly Color k_negativeRemainingCol = new Color(0.934f, 0.2070f, 0.2129f);
 
     private TextMeshProUGUI m_topVal = null;
     private TextMeshProUGUI m_midVal = null;
@@ -69,7 +70,11 @@ public class UIMonthGraph : UIStateBase
             float barSize = 1.0f / activeBars;
             barOnStartPos = SetBarSizeAndText(m_showIncomeToggle.isOn, incomeBar, monthlyValues[i].TotalIncome, highestValue, barOnStartPos, barSize);
             barOnStartPos = SetBarSizeAndText(m_showExpensesToggle.isOn, expensesBar, -1f*monthlyValues[i].TotalExpenses, highestValue, barOnStartPos, barSize);
-            SetBarSizeAndText(m_showRemainingToggle.isOn, leftOverBar, Mathf.Abs(monthlyValues[i].MonthlyBalanceRemaining), highestValue, barOnStartPos, barSize);
+            SetBarSizeAndText(m_showRemainingToggle.isOn, leftOverBar, Mathf.Abs(monthlyValues[i].MonthlyBalanceRemaining), highestValue, barOnStartPos, barSize);            
+            if (monthlyValues[i].MonthlyBalanceRemaining < 0.0f)
+            {
+                leftOverBar.GetComponent<Image>().color = k_negativeRemainingCol;
+            }
             
             TextMeshProUGUI monthText = slot.gameObject.GetComponentFromChild<TextMeshProUGUI>("MonthText");
             int indexOfSeperator = monthlyValues[i].m_monthReflected.IndexOf('_');
@@ -96,7 +101,9 @@ public class UIMonthGraph : UIStateBase
         if (isOn)
         {
             rectTrans.anchorMin = new Vector2(barOnStartPos, rectTrans.anchorMin.y);
-            rectTrans.anchorMax = new Vector2(barOnStartPos + barSize, barValue / highestValue);
+            float yAnchorMax = Mathf.Clamp(rectTrans.anchorMin.y + (barValue / highestValue) *(1.0f- rectTrans.anchorMin.y), rectTrans.anchorMin.y, 1.0f);
+            rectTrans.anchorMax = new Vector2(barOnStartPos + barSize, yAnchorMax);
+
             TextMeshProUGUI valueText = rectTrans.gameObject.GetComponentFromChild<TextMeshProUGUI>("Value");
             valueText.text = barValue.ToString("C0", CultureInfo.CurrentCulture);
             barOnStartPos += barSize;

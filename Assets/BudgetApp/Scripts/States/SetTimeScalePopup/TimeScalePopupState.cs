@@ -42,6 +42,7 @@ public class TimeScalePopupState : FlowStateBase
             case k_saveMsg:
                 var dropVals = m_uiTimeScalePopup.GetDropdownValues();
                 m_saveAction?.Invoke(dropVals.from, dropVals.to);
+                ControllingStateStack.PopState(this);
                 break;
 
             case k_cancelMenuMsg:
