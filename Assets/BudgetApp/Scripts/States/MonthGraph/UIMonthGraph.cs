@@ -42,6 +42,7 @@ public class UIMonthGraph : UIStateBase
 
     public void SetMonthData(MonthlyValueData[] monthlyValues, float highestValue)
     {
+        LocalisationService locService = GameObject.FindObjectOfType<MenuSceneDirector>().LocalisationService; 
         m_graphContent.DestroyAllChildren();
         int activeBars = GetBarsActive();
         float xSize = 1.0f / monthlyValues.Length - k_graphSlotSpacing;
@@ -69,13 +70,12 @@ public class UIMonthGraph : UIStateBase
             barOnStartPos = SetBarSizeAndText(m_showIncomeToggle.isOn, incomeBar, monthlyValues[i].TotalIncome, highestValue, barOnStartPos, barSize);
             barOnStartPos = SetBarSizeAndText(m_showExpensesToggle.isOn, expensesBar, -1f*monthlyValues[i].TotalExpenses, highestValue, barOnStartPos, barSize);
             SetBarSizeAndText(m_showRemainingToggle.isOn, leftOverBar, Mathf.Abs(monthlyValues[i].MonthlyBalanceRemaining), highestValue, barOnStartPos, barSize);
-
-            //TODO: Month Desc of the slots
+            
             TextMeshProUGUI monthText = slot.gameObject.GetComponentFromChild<TextMeshProUGUI>("MonthText");
             int indexOfSeperator = monthlyValues[i].m_monthReflected.IndexOf('_');
-            string month = monthlyValues[i].m_monthReflected.Remove(indexOfSeperator);  //TODO: Localise
+            string monthKey = monthlyValues[i].m_monthReflected.Remove(indexOfSeperator);
             string year = monthlyValues[i].m_monthReflected.Remove(0, indexOfSeperator + 1);            
-            monthText.text = $"{month} {year}";
+            monthText.text = $"{locService.GetLocalised($"MONTH_{monthKey}")} {year}";
         }
 
         m_topVal.text = highestValue.ToString("C", CultureInfo.CurrentCulture);
