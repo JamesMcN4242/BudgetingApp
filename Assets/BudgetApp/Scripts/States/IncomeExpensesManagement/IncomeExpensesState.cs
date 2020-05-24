@@ -147,7 +147,7 @@ public class IncomeExpensesState : FlowStateBase
         m_selectedElementIndex = -1;
         SaveToPlayerPrefs();
 
-        if (m_gridElements.m_elements.Count <= UIIncomeExpenses.k_elementsPerGrid * (m_pageNumber + 1))
+        if (!HasAnotherPage())
         {
             m_pageNumber = Mathf.Max(m_pageNumber - 1, 0);
         }
@@ -163,7 +163,7 @@ public class IncomeExpensesState : FlowStateBase
 
         m_selectedElementIndex = -1;
         m_uiIncomeExpenses.SetEditRemoveInteractablity(false);
-        m_uiIncomeExpenses.SetPageNavigatorInteractability(m_pageNumber > 0, m_gridElements.m_elements.Count > (m_pageNumber+1) * UIIncomeExpenses.k_elementsPerGrid);
+        m_uiIncomeExpenses.SetPageNavigatorInteractability(m_pageNumber > 0, HasAnotherPage());
     }
 
     private void SaveToPlayerPrefs()
@@ -171,5 +171,10 @@ public class IncomeExpensesState : FlowStateBase
         string json = JsonUtility.ToJson(m_gridElements);
         PlayerPrefs.SetString(k_incomeExpensesKey, json);
         PlayerPrefs.Save();
+    }
+
+    private bool HasAnotherPage()
+    {
+        return m_gridElements.m_elements.Count > (m_pageNumber + 1) * UIIncomeExpenses.k_elementsPerGrid;
     }
 }
