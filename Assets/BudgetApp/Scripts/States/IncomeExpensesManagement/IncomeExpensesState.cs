@@ -175,6 +175,6 @@ public class IncomeExpensesState : FlowStateBase
 
     private bool HasAnotherPage()
     {
-        return m_gridElements.m_elements.Count > (m_pageNumber + 1) * UIIncomeExpenses.k_elementsPerGrid;
+        return m_gridElements.m_elements?.Count > (m_pageNumber + 1) * UIIncomeExpenses.k_elementsPerGrid;
     }
 }
