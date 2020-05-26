@@ -43,8 +43,8 @@ public class IncomeExpensesState : FlowStateBase
 
     protected override void StartPresentingState()
     {
-        //TODO: Localise UI Text strings
-        m_uiIncomeExpenses.SetTitle((k_showingVariableValues ? "Variable" : "Fixed") + " Values");
+        string locTitle = m_locService.GetLocalised((k_showingVariableValues ? "VARIABLE" : "FIXED") + "_INCOME_TITLE");
+        m_uiIncomeExpenses.SetTitle(locTitle);
         BuildGridElements();
     }
 
