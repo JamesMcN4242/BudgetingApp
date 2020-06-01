@@ -43,14 +43,18 @@ public class BaseMenuState : FlowStateBase
             monthData.m_monthReflected = monthTrackedPreviously;
 
             string previousJson = PlayerPrefs.GetString(k_monthCollectionKey, string.Empty);
-            PreviousMonthlyValues values = JsonUtility.FromJson<PreviousMonthlyValues>(previousJson);
+            PreviousMonthlyValues values = default;
+            if(!string.IsNullOrEmpty(previousJson))
+            {
+                values = JsonUtility.FromJson<PreviousMonthlyValues>(previousJson);
+            }
+            
             if (values.monthlyValues == null) values.monthlyValues = new List<MonthlyValueData>();
             values.monthlyValues.Add(monthData);
             PlayerPrefs.SetString(k_monthCollectionKey, JsonUtility.ToJson(values));
             PlayerPrefs.SetString(k_monthTrackingKey, string.Format(k_monthTrackingFormat, DateTime.Now.Month, DateTime.Now.Year));
             PlayerPrefs.DeleteKey(k_variableValuesKey);
             PlayerPrefs.Save();
-            return;
         }
     }
 
