@@ -79,7 +79,7 @@ public class BaseMenuState : FlowStateBase
                 break;
 
             case k_settingsMsg:
-                ControllingStateStack.PushState(new SettingsState(m_localisationService, RefreshTextLanguage));
+                ControllingStateStack.PushState(new SettingsState(m_localisationService));
                 break;
         }
     }
@@ -88,10 +88,5 @@ public class BaseMenuState : FlowStateBase
     {
         m_ui = GameObject.FindObjectOfType<UIBaseMenu>();
         return m_ui != null;
-    }
-
-    private void RefreshTextLanguage()
-    {
-
     }
 }

@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 4587243620540810397}
   - component: {fileID: 8359694852249626512}
   - component: {fileID: 5013015723722312958}
+  - component: {fileID: 6940772146929214335}
   m_Layer: 5
   m_Name: Desc
   m_TagString: Untagged
@@ -233,6 +234,19 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6940772146929214335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154054648286062538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d29baea8bcf5f74cb736b0ea2570038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_locKey: TOTAL_VARIABLE_INCOME
 --- !u!1 &1616223780346657252
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,6 +491,7 @@ GameObject:
   - component: {fileID: 9195542822463992945}
   - component: {fileID: 2641537690549864527}
   - component: {fileID: 3172707343519037705}
+  - component: {fileID: 2066612798932748566}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -623,6 +638,19 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2066612798932748566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289026373854770591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d29baea8bcf5f74cb736b0ea2570038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_locKey: BACK_BUTTON
 --- !u!1 &2874970953137737976
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,6 +813,7 @@ GameObject:
   - component: {fileID: 6377692859981940633}
   - component: {fileID: 8958162584878580284}
   - component: {fileID: 6865326315323880854}
+  - component: {fileID: 5950959205277262632}
   m_Layer: 5
   m_Name: Desc
   m_TagString: Untagged
@@ -931,6 +960,19 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5950959205277262632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3366979072511876306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d29baea8bcf5f74cb736b0ea2570038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_locKey: CURRENT_REMAINING
 --- !u!1 &3725391953076520944
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,6 +1141,7 @@ GameObject:
   - component: {fileID: 8350232036221499334}
   - component: {fileID: 5075239976100512796}
   - component: {fileID: 2960785656027283389}
+  - component: {fileID: 5003966672364348166}
   m_Layer: 5
   m_Name: Desc
   m_TagString: Untagged
@@ -1245,6 +1288,19 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5003966672364348166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3749988413926869796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d29baea8bcf5f74cb736b0ea2570038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_locKey: TOTAL_VARIABLE_EXPENSES
 --- !u!1 &3858613178693316919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1548,6 +1604,7 @@ GameObject:
   - component: {fileID: 8526441869134857081}
   - component: {fileID: 2063550991444049872}
   - component: {fileID: 6512933317001314470}
+  - component: {fileID: 136536520266930990}
   m_Layer: 5
   m_Name: Desc
   m_TagString: Untagged
@@ -1694,6 +1751,19 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &136536520266930990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4730279402673114723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d29baea8bcf5f74cb736b0ea2570038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_locKey: TOTAL_FIXED_EXPENSES
 --- !u!1 &6249636782231797166
 GameObject:
   m_ObjectHideFlags: 0
@@ -1862,6 +1932,7 @@ GameObject:
   - component: {fileID: 3804479326661439040}
   - component: {fileID: 6545529934792998696}
   - component: {fileID: 7684398926451598526}
+  - component: {fileID: 5050475512942259458}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -2008,6 +2079,19 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5050475512942259458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7346599621845399526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d29baea8bcf5f74cb736b0ea2570038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_locKey: MONTH_OVERVIEW
 --- !u!1 &7723847791950309786
 GameObject:
   m_ObjectHideFlags: 0
@@ -2220,6 +2304,7 @@ GameObject:
   - component: {fileID: 3848810735933183190}
   - component: {fileID: 3009411437391201292}
   - component: {fileID: 352843292817182260}
+  - component: {fileID: 6479443600090087133}
   m_Layer: 5
   m_Name: Desc
   m_TagString: Untagged
@@ -2366,6 +2451,19 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6479443600090087133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148544130492757778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d29baea8bcf5f74cb736b0ea2570038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_locKey: TOTAL_FIXED_INCOME
 --- !u!1 &8165236254680431105
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,12 +20,10 @@ public class SettingsState : FlowStateBase
 
     private UISettings m_uiSettings = null;
     private LocalisationService m_locService = null;
-    private Action m_refreshBaseText = null;
 
-    public SettingsState(LocalisationService localisationService, Action refreshUIText)
+    public SettingsState(LocalisationService localisationService)
     {
         m_locService = localisationService;
-        m_refreshBaseText = refreshUIText;
     }
 
     protected override void StartPresentingState()
@@ -65,8 +63,11 @@ public class SettingsState : FlowStateBase
                 PlayerPrefs.SetInt(k_localisationIndexKey, index);
                 PlayerPrefs.Save();
 
-                //TODO: Refresh this and base UI
-                m_refreshBaseText?.Invoke();
+                LocalisationUIRefresher[] uiRefreshers = GameObject.FindObjectsOfType<LocalisationUIRefresher>();
+                foreach(LocalisationUIRefresher uiText in uiRefreshers)
+                {
+                    uiText.RefreshText();
+                }
                 break;
         }
     }
